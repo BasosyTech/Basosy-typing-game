@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A JavaScript typing speed test game with multiple difficulty levels, timers, and a leaderboard system."
+    />
+    <title>Typing Speed Test Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/master.css" />
+  </head>
+  <body>
+    <section class="game">
+      <h2 class="name">Typing Speed Test Game</h2>
+      <div class="container">
+        <div class="difficulty">Choose the difficulty you want:</div>
+        <select name="levels" id="levelsBox">
+          <option value="Easy" data-color="#2196f3">Easy</option>
+          <option value="Normal" data-color="#009688">Normal</option>
+          <option value="Hard" data-color="red">Hard</option>
+        </select>
+        <div class="message">
+          You Are Playing On <span class="lvl"></span> Level & You Have
+          <span class="seconds"></span> Seconds To Type The Word
+        </div>
+        <button class="start">Start Playing</button>
+        <div class="the-word"></div>
+        <input type="text" class="input" />
+        <div class="upcoming-words">Words Will Show Here</div>
+        <div class="control">
+          <div class="time">Time Left: <span></span> Seconds</div>
+          <div class="score">
+            Score: <span class="got"></span> From <span class="total"></span>
+          </div>
+        </div>
+        <div class="game-timer"></div>
+        <div class="scores-boxes">
+          <h3 class="scores-boxes-title">Your Best Scores Will Show Here</h3>
+          <div class="scores-box hide" data-level="Easy">
+            <h4 class="scores-title">
+              <div class="content">
+                Best Scores for the <span class="easy-word">Easy</span> Level:
+              </div>
+              <i class="fa-solid fa-angle-down open-icon"></i>
+            </h4>
+            <table class="scores_table">
+              <thead class="easy">
+                <tr>
+                  <th>Score</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody class="easy-scores-body">
+                <tr>
+                  <td>No Scores Yet</td>
+                  <td>????</td>
+                  <td>????</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="scores-box hide" data-level="Normal">
+            <h4 class="scores-title">
+              <div class="content">
+                Best Scores for the
+                <span class="normal-word">Normal</span> Level:
+              </div>
+              <i class="fa-solid fa-angle-down open-icon"></i>
+            </h4>
+            <table class="scores_table">
+              <thead class="normal">
+                <tr>
+                  <th>Score</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody class="normal-scores-body">
+                <tr>
+                  <td>No Scores Yet</td>
+                  <td>????</td>
+                  <td>????</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="scores-box hide" data-level="Hard">
+            <h4 class="scores-title">
+              <div class="content">
+                Best Scores for the <span class="hard-word">Hard</span> Level:
+              </div>
+              <i class="fa-solid fa-angle-down open-icon"></i>
+            </h4>
+            <table class="scores_table">
+              <thead class="hard">
+                <tr>
+                  <th>Score</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody class="hard-scores-body">
+                <tr>
+                  <td>No Scores Yet</td>
+                  <td>????</td>
+                  <td>????</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="new-score-popup"></div>
+        <div class="finish-level-message"></div>
+        <div class="end-game-message"><span class="close"></span></div>
+      </div>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,407 @@
+:root {
+  --main-color: #2196f3;
+  --secondary-color: #009688;
+  --third-color: red;
+}
+* {
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+}
+body {
+  margin: 0;
+}
+.game {
+  background-color: #eee;
+  min-height: 200vh;
+}
+.name {
+  background-color: var(--main-color);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin: 0px;
+}
+.container {
+  margin: auto;
+  max-width: 900px;
+  padding-inline: 10px;
+}
+.difficulty {
+  color: var(--main-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+#levelsBox {
+  display: block;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  margin: 5px auto;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  border: 2px solid;
+}
+.message {
+  background-color: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 1.4;
+}
+/* This Style For Normally State  */
+.message .lvl,
+.message .seconds {
+  font-weight: bold;
+  &::before {
+    content: "[ ";
+  }
+  &::after {
+    content: " ]";
+  }
+}
+.message .lvl.easy,
+.message .seconds.easy {
+  color: var(--main-color);
+}
+.message .lvl.normal,
+.message .seconds.normal {
+  color: var(--secondary-color);
+}
+.message .lvl.hard,
+.message .seconds.hard {
+  color: var(--third-color);
+}
+/* This Style For End Game State */
+.message .Congrats-word {
+  color: var(--main-color);
+  font-weight: bold;
+  display: block;
+  font-size: 18px;
+}
+.message .Congrats-message {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+.start {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+}
+.the-word {
+  text-align: center;
+  font-weight: bold;
+  font-size: 60px;
+  user-select: none;
+  line-height: 1;
+}
+.the-word.easy {
+  color: var(--main-color);
+}
+.the-word.normal {
+  color: var(--secondary-color);
+}
+.the-word.hard {
+  color: var(--third-color);
+}
+.input {
+  display: block;
+  margin: 7px auto;
+  width: 100%;
+  padding: 5px;
+  border: 3px solid var(--main-color);
+  font-size: 20px;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 6px;
+  caret-color: var(--main-color);
+  &:focus {
+    outline: none;
+  }
+}
+.upcoming-words {
+  background-color: white;
+  margin: 10px 0;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+.upcoming-words.hide {
+  display: none;
+}
+.upcoming-words div {
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+.upcoming-words div.easy {
+  background-color: var(--main-color);
+}
+.upcoming-words div.normal {
+  background-color: var(--secondary-color);
+}
+.upcoming-words div.hard {
+  background-color: var(--third-color);
+}
+.control {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+}
+.control span {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+.control span.easy {
+  color: var(--main-color);
+}
+.control span.normal {
+  color: var(--secondary-color);
+}
+.control span.hard {
+  color: var(--third-color);
+}
+/* This Style If The Person End The Game */
+.control .play-again {
+  cursor: pointer;
+  color: var(--main-color);
+  font-weight: bold;
+}
+.game-timer {
+  background: #474343;
+  color: white;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: 0.3s;
+  z-index: 1;
+}
+.game-timer.show {
+  transform: translateX(-50%) scale(1);
+}
+.finish-level-message {
+  font-weight: bold;
+  font-size: clamp(30px, 10vw, 37px);
+  text-align: center;
+  padding: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: white;
+  width: 300px;
+  max-width: 90%;
+  aspect-ratio: 1/1;
+  border-radius: 6px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.finish-level-message.show {
+  transform: translate(-50%, -50%) scale(1);
+}
+.finish-level-message .good {
+  color: var(--main-color);
+}
+.finish-level-message .good .again-next {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  font-size: 16px;
+  color: black;
+  right: 0px;
+  bottom: 10px;
+  width: 100%;
+  padding-inline: 10px;
+}
+.again-next > span {
+  cursor: pointer;
+}
+.finish-level-message .bad {
+  color: var(--third-color);
+}
+.finish-level-message .bad .again {
+  position: absolute;
+  font-size: 16px;
+  color: black;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
+}
+.scores-boxes {
+  margin-top: 10px;
+  background: white;
+  padding: 5px 10px;
+}
+.scores-boxes-title {
+  margin: 0;
+  text-align: center;
+  color: var(--secondary-color);
+}
+.scores-box.hide {
+  display: none;
+}
+.scores-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.scores-title .easy-word {
+  color: var(--main-color);
+}
+.scores-title .normal-word {
+  color: var(--secondary-color);
+}
+.scores-title .hard-word {
+  color: var(--third-color);
+}
+.scores-title .open-icon {
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: 0.3s;
+}
+.scores-title .open-icon.open {
+  transform: rotate(180deg);
+}
+.scores_table {
+  width: 300px;
+  max-width: 90%;
+  border-spacing: 0;
+  display: none;
+}
+.scores_table.open {
+  display: block;
+}
+.scores_table thead.easy {
+  background-color: #0c5590e0;
+  color: white;
+}
+.scores_table thead.normal {
+  background-color: #065f56;
+  color: white;
+}
+.scores_table thead.hard {
+  background-color: rgb(207, 83, 83);
+  color: white;
+}
+.scores_table th {
+  width: 100px;
+}
+.scores_table tbody tr.easy {
+  font-weight: bold;
+  color: var(--main-color);
+}
+.scores_table tbody tr.normal {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+.scores_table tbody tr.hard {
+  font-weight: bold;
+  color: var(--third-color);
+}
+.scores_table td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  padding-inline: 2px;
+}
+.scores_table td:last-of-type {
+  border-right: 1px solid #ddd;
+}
+.new-score-popup {
+  background: var(--secondary-color);
+  color: white;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: 0.3s;
+  z-index: 2;
+}
+.new-score-popup.show {
+  transform: translateX(-50%) scale(1);
+}
+.end-game-message {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: white;
+  width: 330px;
+  aspect-ratio: 1 / 1;
+  max-width: 90%;
+  border-radius: 6px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.4;
+  z-index: 3;
+}
+.end-game-message.show {
+  transform: translate(-50%, -50%) scale(1);
+}
+.end-game-message .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 14px;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid var(--third-color);
+  color: var(--third-color);
+}
+.end-game-message .popup-body {
+  padding: clamp(5px, 1.4vw, 10px);
+}
+.end-game-message .popup-title {
+  color: #2196f3;
+  font-size: 26px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.end-game-message .popup-subtitle {
+  font-size: clamp(17px, 4vw, 19px);
+  color: #333;
+  margin: 0px;
+}
+.end-game-message .popup-note {
+  font-size: clamp(15px, 4vw, 16px);
+  color: #666;
+  line-height: 1.3;
+  margin: 5px;
+}

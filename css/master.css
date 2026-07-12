@@ -9,10 +9,7 @@
 }
 body {
   margin: 0;
-}
-.game {
   background-color: #eee;
-  min-height: 200vh;
 }
 .name {
   background-color: var(--main-color);
@@ -46,10 +43,11 @@ body {
 .message {
   background-color: white;
   padding: 15px;
-  margin: 10px 0;
-  border-radius: 6px;
   text-align: center;
   line-height: 1.4;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: clamp(16px, 4vw, 19px);
 }
 /* This Style For Normally State  */
 .message .lvl,
@@ -83,6 +81,19 @@ body {
 }
 .message .Congrats-message {
   color: var(--secondary-color);
+  font-weight: bold;
+}
+.helper-text {
+  margin: 10px 0;
+  background-color: white;
+  padding: 15px;
+  text-align: center;
+  line-height: 1.4;
+  border-radius: 6px;
+  font-size: clamp(16px, 4vw, 19px);
+}
+.helper-text span {
+  color: var(--main-color);
   font-weight: bold;
 }
 .start {
@@ -136,6 +147,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  font-size: 18px;
 }
 .upcoming-words.hide {
   display: none;
@@ -196,6 +208,16 @@ body {
 }
 .game-timer.show {
   transform: translateX(-50%) scale(1);
+}
+@media (max-width: 767px) {
+  .game-timer {
+    position: static;
+    margin: 10px auto;
+    transform: scale(0);
+  }
+  .game-timer.show {
+    transform: scale(1);
+  }
 }
 .finish-level-message {
   font-weight: bold;
@@ -266,6 +288,7 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: clamp(16px, 4vw, 19px);
 }
 .scores-title .easy-word {
   color: var(--main-color);
@@ -332,6 +355,7 @@ body {
 .new-score-popup {
   background: var(--secondary-color);
   color: white;
+  text-align: center;
   width: fit-content;
   padding: 5px 10px;
   border-radius: 5px;

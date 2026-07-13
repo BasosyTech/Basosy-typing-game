@@ -11,6 +11,22 @@ const words = {
     "Rust",
     "Test",
     "Roles",
+    "Array",
+    "Event",
+    "Fetch",
+    "Node",
+    "Tags",
+    "Tree",
+    "Yield",
+    "State",
+    "Scope",
+    "Loop",
+    "React",
+    "This",
+    "Var",
+    "Bug",
+    "Html",
+    "Null",
   ],
   Normal: [
     "Country",
@@ -26,16 +42,39 @@ const words = {
     "Github",
     "Twitter",
     "Leetcode",
+    "Boolean",
+    "Compiler",
+    "Element",
+    "Provider",
+    "Selector",
+    "Template",
+    "Webpack",
+    "Variable",
+    "Promise",
+    "Iterable",
+    "Closure",
+    "Constant",
   ],
   Hard: [
     "Programming",
-    // "Javascript",
-    // "Linkedin",
-    // "Internet",
-    // "Destructuring",
-    // "Paradigm",
-    // "Documentation",
-    // "Dependencies",
+    "Javascript",
+    "Linkedin",
+    "Internet",
+    "Destructuring",
+    "Paradigm",
+    "Recursion",
+    "Constructor",
+    "Inheritance",
+    "Basosy123",
+    "Temperature",
+    "Lightning",
+    "Comfortable",
+    "Appreciate",
+    "Facebookone",
+    "Relationship",
+    "Independence",
+    "Hi",
+    "Habibi",
   ],
 };
 // Random Words Of Easy Words
@@ -47,8 +86,8 @@ const randomWords = {
 // Setting Levels
 const lvls = [
   { name: "Easy", seconds: 5 },
-  { name: "Normal", seconds: 3 },
-  { name: "Hard", seconds: 4 },
+  { name: "Normal", seconds: 4 },
+  { name: "Hard", seconds: 5 },
 ];
 // Catch Selctors
 const levelsSelectBox = document.querySelector("#levelsBox");
@@ -65,6 +104,7 @@ const timeBox = document.querySelector(".time");
 const timeLeft = document.querySelector(".time span");
 const yourScore = document.querySelector(".score .got");
 const totalScore = document.querySelector(".score .total");
+const helperText = document.querySelector(".helper-text");
 const gameTimerElement = document.querySelector(".game-timer");
 const scoreBoxes = document.querySelectorAll(".scores-box");
 const scoreTitles = document.querySelectorAll(".scores-title");
@@ -75,21 +115,27 @@ const newScorePopup = document.querySelector(".new-score-popup");
 const finishLevelMessage = document.querySelector(".finish-level-message");
 const endGameMessage = document.querySelector(".end-game-message");
 const closeEndGameMessage = document.querySelector(".end-game-message .close");
-// Set Default Level
-updateSelectColor();
-let defaultLevelName = levelsSelectBox.value;
-let defaultLevelSeconds = setDefaultSeconds();
 const tables = {
   Easy: bestEasyScoresTable,
   Normal: bestNormalScoresTable,
   Hard: bestHardScoresTable,
 };
+// Get The Curr Level
+if (localStorage.getItem("current-lvl")) {
+  levelsSelectBox.value = localStorage.getItem("current-lvl");
+}
+// Set Default Level
+updateSelectColor();
+let defaultLevelName = levelsSelectBox.value;
+let defaultLevelSeconds = setDefaultSeconds();
 // If The user Change The DefaultValue
 levelsSelectBox.addEventListener("change", function () {
   updateSelectColor();
   defaultLevelName = this.value;
   defaultLevelSeconds = setDefaultSeconds();
   levelSettings();
+  // Save The Current Level On Local Storage
+  saveLevel(this.value);
 });
 // Set The Level Name + Second + Score
 levelSettings();
@@ -127,6 +173,7 @@ startButton.addEventListener("click", () => {
 // If The Player Click On The Play Again reload The Page
 controlBox.addEventListener("click", (e) => {
   if (e.target.classList.contains("play-again")) {
+    localStorage.removeItem("current-lvl");
     location.reload();
   }
 });
@@ -267,8 +314,8 @@ function startPlay() {
     showTimer(gameTimer);
     if (timeLeft.textContent === "0") {
       clearInterval(wordTimer);
-      checkFunc();
       inputField.removeEventListener("keyup", checkinputField);
+      checkFunc();
     }
   }, 1000);
 }
@@ -315,6 +362,7 @@ function checkFunc() {
       goodBox.append(againOrNextBox);
       finishLevelMessage.append(goodBox);
       currentWord.textContent = "";
+      inputField.blur();
       finishLevelMessage.classList.add("show");
       saveScore(gameTimer);
       hideTimer();
@@ -327,18 +375,19 @@ function checkFunc() {
     span.textContent = "Try Again";
     span.classList.add("again");
     div.append(span);
-    finishLevelMessage.classList.add("show");
-    currentWord.textContent = "";
     finishLevelMessage.append(div);
+    currentWord.textContent = "";
     inputField.value = "";
+    inputField.blur();
+    finishLevelMessage.classList.add("show");
     hideTimer();
   }
 }
 function checkinputField(e) {
   if (e.key === "Enter" && inputField.value !== "") {
     clearInterval(wordTimer);
-    checkFunc();
     inputField.removeEventListener("keyup", checkinputField);
+    checkFunc();
   }
 }
 function setDefaultSeconds() {
@@ -383,6 +432,9 @@ function saveScore(gameTimer) {
     showNewScorePopup();
     showScores(defaultLevelName, true);
   } else showScores(defaultLevelName);
+}
+function saveLevel(level) {
+  localStorage.setItem("current-lvl", level);
 }
 function createScoreObj(gameTimer) {
   let date = new Date();

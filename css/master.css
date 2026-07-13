@@ -379,7 +379,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   background-color: white;
-  width: 330px;
+  width: 370px;
   aspect-ratio: 1 / 1;
   max-width: 90%;
   border-radius: 6px;
@@ -396,11 +396,10 @@ body {
 }
 .end-game-message .close {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 14px;
-  width: 23px;
-  height: 23px;
+  top: 7px;
+  right: 7px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -409,23 +408,24 @@ body {
   border: 2px solid var(--third-color);
   color: var(--third-color);
   line-height: 1;
+  font-size: 18px;
 }
 .end-game-message .popup-body {
   padding: clamp(5px, 1.4vw, 10px);
 }
 .end-game-message .popup-title {
-  color: #2196f3;
-  font-size: 26px;
+  color: var(--main-color);
+  font-size: clamp(26px, 8vw, 34px);
   margin-top: 0px;
   margin-bottom: 5px;
 }
 .end-game-message .popup-subtitle {
-  font-size: clamp(17px, 4vw, 19px);
+  font-size: clamp(17px, 5vw, 19px);
   color: #333;
   margin: 0px;
 }
 .end-game-message .popup-note {
-  font-size: clamp(15px, 4vw, 16px);
+  font-size: clamp(15px, 4vw, 18px);
   color: #666;
   line-height: 1.3;
   margin: 5px;

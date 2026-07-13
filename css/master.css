@@ -408,6 +408,7 @@ body {
   cursor: pointer;
   border: 2px solid var(--third-color);
   color: var(--third-color);
+  line-height: 1;
 }
 .end-game-message .popup-body {
   padding: clamp(5px, 1.4vw, 10px);

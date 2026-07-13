@@ -211,11 +211,11 @@ body {
 }
 @media (max-width: 767px) {
   .game-timer {
-    position: static;
-    margin: 10px auto;
     transform: scale(0);
   }
   .game-timer.show {
+    position: static;
+    margin: 10px auto;
     transform: scale(1);
   }
 }

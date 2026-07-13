@@ -492,7 +492,7 @@ function showScores(levelScores, isTopScore = false) {
   tables[levelScores].append(fragment);
 }
 function showNewScorePopup() {
-  newScorePopup.textContent = `You Got A New Score On ${defaultLevelName} Level!!`;
+  newScorePopup.innerHTML = `You Got A New Score On <span style = "font-weight:bold">"${defaultLevelName}"</span> Level!!`;
   newScorePopup.classList.toggle("show");
   // Open The Table For The Current Level
   for (const scoresBox of scoreBoxes) {
